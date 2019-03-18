@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.neno.rentacar">
+
+    <uses-sdk android:minSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:logo="@drawable/icon"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".AvailableCarsActivity"
+            android:label="Check In Check Out"
+            android:logo="@drawable/icon">
+
+            <intent-filter>
+                <action android:name="com.example.neno.vj7http1.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Check In Check Out">
+
+        </activity>
+
+        <activity
+            android:name=".SplashActivity"
+            android:label="Check In Check Out">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AvailableCarDetailsActivity"></activity>
+
+        <activity
+            android:name=".RentedCarsActivity"
+            android:label="Check In Check Out"></activity>
+        <activity
+            android:name=".RentedCarDetailsActivity"
+            android:label="Check In Check Out"></activity>
+
+        <activity
+            android:name=".DamagesActivity"
+            android:label="Check In Check Out"></activity>
+        <activity
+            android:name=".HomePageActivity"
+            android:label="Check In Check Out"></activity>
+    </application>
+</manifest>
