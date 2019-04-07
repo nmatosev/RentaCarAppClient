@@ -11,13 +11,14 @@ import android.widget.TextView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 /**
- * Created by neno on 10.11.2015..
+ * Created by neno on 10.11.2015.
+ * This class is responsible for presenting list of available cars.
  */
-public class CustomAdapter extends BaseAdapter {
+public class AvailableAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
 
-    public CustomAdapter(Context context) {
+    public AvailableAdapter(Context context) {
         mContext = context;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -39,8 +40,9 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null)
+        if (convertView == null){
             convertView = mInflater.inflate(R.layout.item_available_car, parent, false);
+        }
         ImageView thumbnailImage = (ImageView) convertView.findViewById(R.id.thumbnail_image);
         TextView licensePlate = (TextView) convertView.findViewById(R.id.license_plate);
         TextView manufacturer = (TextView) convertView.findViewById(R.id.manufacturer);
@@ -48,7 +50,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView fuelTankStatus = (TextView) convertView.findViewById(R.id.fuel_tank_status);
         licensePlate.setText((DataStorage.cars[position].getLicensePlate()));
         manufacturer.setText(" " + (DataStorage.cars[position].getManufacturer()));
-        model.setText(" " + (DataStorage.cars[position].getModel()));
+        model.setText(Constants.SPACE + (DataStorage.cars[position].getModel()));
         fuelTankStatus.setText("Tank: " + (DataStorage.cars[position].getFuelTankStatus()) + "%");
         UrlImageViewHelper.setUrlDrawable(thumbnailImage, DataStorage.cars[position].getThumbnailImage());
         return convertView;

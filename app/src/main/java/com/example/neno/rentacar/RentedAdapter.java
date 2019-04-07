@@ -11,7 +11,8 @@ import android.widget.TextView;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 /**
- * Created by neno on 10.11.2015..
+ * Created by neno on 10.11.2015.
+ * This class is responsible for presenting list of rented cars.
  */
 public class RentedAdapter extends BaseAdapter {
 
@@ -49,8 +50,8 @@ public class RentedAdapter extends BaseAdapter {
         TextView model = (TextView) convertView.findViewById(R.id.model);
         TextView stanjeTanka = (TextView) convertView.findViewById(R.id.fuel_tank_status);
         reg.setText((DataStorage.cars[position].getLicensePlate()));
-        marka.setText(" " + (DataStorage.cars[position].getManufacturer())); //podatak obavezno u string inače puca APP
-        model.setText(" " + (DataStorage.cars[position].getModel())); //pristupanje datstorageu na poziciju objekta
+        marka.setText(Constants.SPACE + (DataStorage.cars[position].getManufacturer()));
+        model.setText(Constants.SPACE + (DataStorage.cars[position].getModel()));
         stanjeTanka.setText("Tank: " + (DataStorage.cars[position].getFuelTankStatus()) + "%");
         UrlImageViewHelper.setUrlDrawable(thumbnail, DataStorage.cars[position].getThumbnailImage());
         return convertView;

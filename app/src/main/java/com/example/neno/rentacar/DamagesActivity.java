@@ -75,7 +75,7 @@ public class DamagesActivity extends Activity {
         value = extras.getInt("position");
         licensePlateTextView.setText((DataStorage.cars[value].getLicensePlate()));
         manufacturerTextView.setText("   " + (DataStorage.cars[value].getManufacturer()));
-        modelTextView.setText(" " + (DataStorage.cars[value].getModel()));
+        modelTextView.setText(Constants.SPACE + (DataStorage.cars[value].getModel()));
 
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,7 +181,6 @@ public class DamagesActivity extends Activity {
             dataToSend.add(new BasicNameValuePair("licensePlate", (DataStorage.cars[value].getLicensePlate())));
 
             JSONObject json = jsonParser.makeHttpRequest(UPLOAD_IMAGE_SCRIPT, "POST", dataToSend);
-            // check json success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {

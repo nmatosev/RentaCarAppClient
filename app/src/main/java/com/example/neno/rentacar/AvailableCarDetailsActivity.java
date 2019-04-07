@@ -26,13 +26,12 @@ import java.util.List;
  * Created by neno on 12.11.2015..
  */
 public class AvailableCarDetailsActivity extends Activity {
-    String key;
     int value;
 
-    private static final String TRANSFER_CAR_TO_RENTED_SCRIPT = Constants.SERVER_IP_ADDRESS + "/checkInCheckOut/transferToRented.php";
+    private static final String TRANSFER_CAR_TO_RENTED_SCRIPT = Constants.SERVER_IP_ADDRESS + Constants.TRANSFER_CAR_TO_RENTED_SCRIPT_PATH;
     private static final String TAG_SUCCESS = "success";
     private static final String REG = "licensePlate";
-    private static final String TAG_NAME = "manufacturer";  //poveznica sa arg u php skripti
+    private static final String TAG_NAME = "manufacturer";
     private static final String TAG_MODEL = "model";
     private static final String TAG_STETE = "stete";
     private static final String TAG_KM = "kilometraza";
@@ -69,10 +68,7 @@ public class AvailableCarDetailsActivity extends Activity {
         }
 
         final Preferences preferences = new Preferences(this);
-        key = "poz";
-        value = extras.getInt("position");
-        preferences.setInt(key, value);
-        String val = String.valueOf(value);
+        preferences.setInt("poz", extras.getInt("position"));
 
         sendToRentedButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,20 +101,18 @@ public class AvailableCarDetailsActivity extends Activity {
 
         protected String doInBackground(String... args) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair(REG, (DataStorage.cars[value].getLicensePlate()).toString()));
-            params.add(new BasicNameValuePair(TAG_NAME, (DataStorage.cars[value].getManufacturer()).toString()));
-            params.add(new BasicNameValuePair(TAG_MODEL, (DataStorage.cars[value].getModel()).toString()));
-            params.add(new BasicNameValuePair(TAG_KM, (DataStorage.cars[value].getMileage()).toString()));
-            params.add(new BasicNameValuePair(TAG_STETE, (DataStorage.cars[value].getDamages()).toString()));
-            params.add(new BasicNameValuePair(TAG_TANK, (DataStorage.cars[value].getFuelTankStatus()).toString()));
-            params.add(new BasicNameValuePair(TAG_IMG, (DataStorage.cars[value].getThumbnailImage()).toString()));
-            params.add(new BasicNameValuePair(TAG_KAT, (DataStorage.cars[value].getCategory()).toString()));
+            params.add(new BasicNameValuePair(REG, (DataStorage.cars[value].getLicensePlate())));
+            params.add(new BasicNameValuePair(TAG_NAME, (DataStorage.cars[value].getManufacturer())));
+            params.add(new BasicNameValuePair(TAG_MODEL, (DataStorage.cars[value].getModel())));
+            params.add(new BasicNameValuePair(TAG_KM, (DataStorage.cars[value].getMileage())));
+            params.add(new BasicNameValuePair(TAG_STETE, (DataStorage.cars[value].getDamages())));
+            params.add(new BasicNameValuePair(TAG_TANK, (DataStorage.cars[value].getFuelTankStatus())));
+            params.add(new BasicNameValuePair(TAG_IMG, (DataStorage.cars[value].getThumbnailImage())));
+            params.add(new BasicNameValuePair(TAG_KAT, (DataStorage.cars[value].getCategory())));
             JSONObject json = jsonParser.makeHttpRequest(TRANSFER_CAR_TO_RENTED_SCRIPT, "POST", params);
-            // check json success tag
             try {
                 Log.d("POST request", "Trying to send post request...");
                 int success = json.getInt(TAG_SUCCESS);
-
                 if (success == 1) {
                     Intent i = getIntent();
                     setResult(100, i);

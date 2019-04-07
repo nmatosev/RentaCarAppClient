@@ -25,7 +25,7 @@ public class AvailableCarsActivity extends ActionBarActivity {
     private AsyncHttpClient httpClient = new AsyncHttpClient();
     private Gson mGson = new Gson();
     private ListView listView;
-    private CustomAdapter adapter;
+    private AvailableAdapter adapter;
     private String GET_AVAILABLE_CARS_SCRIPT = Constants.SERVER_IP_ADDRESS + Constants.AVAILABLE_CARS_SCRIPT_PATH;
 
     @Override
@@ -47,7 +47,7 @@ public class AvailableCarsActivity extends ActionBarActivity {
             public void onSuccess(JSONArray response) {
                 DataStorage.cars = mGson.fromJson(response.toString(), Car[].class);
                 Log.d("Http reponse", "Gson converted");
-                adapter = new CustomAdapter(getApplicationContext());
+                adapter = new AvailableAdapter(getApplicationContext());
                 listView.setAdapter(adapter);
             }
 

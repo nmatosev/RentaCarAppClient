@@ -1,8 +1,6 @@
 package com.example.neno.rentacar;
 
-/**
- * Created by neno on 17.11.2015..
- */
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +23,9 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * Created by neno on 17.11.2015..
+ */
 public class JSONParser {
 
     static InputStream is = null;
